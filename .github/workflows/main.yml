@@ -9,4 +9,16 @@ jobs:
       - name: Run a command with a secret
         env:
           AQI_API_KEY: ${{ secrets.AQI_API_KEY }} # Use your secret here
-        run: echo "Using secret in a command ${AQI_API_KEY}"
+        run: |
+          echo "Using secret in a command ${#AQI_API_KEY}"
+          home_dir=$(pwd)
+          echo $home_dir
+          echo -----------------------------------------------------------------------
+          pip install --upgrade pip    
+          echo -----------------------------------------------------------------------
+          pip install "snowflake-snowpark-python[pandas]"
+          echo -----------------------------------------------------------------------
+          ls -la
+          pwd
+          echo ----------------------------------------------------------------------- 
+          python $home_dir/testing_github_variables.py
