@@ -9,6 +9,8 @@ jobs:
       - name: Run a command with a secret
         env:
           AQI_API_KEY: ${{ secrets.AQI_API_KEY }} # Use your secret here
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
         run: |
           echo "Using secret in a command ${#AQI_API_KEY}"
           home_dir=$(pwd)
@@ -21,4 +23,4 @@ jobs:
           ls -la
           pwd
           echo ----------------------------------------------------------------------- 
-          python $home_dir/testing_github_variables.py
+          python $home_dir/api_client.py
