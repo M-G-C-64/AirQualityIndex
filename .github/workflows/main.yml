@@ -1,24 +1,12 @@
-name: testing
-on:
-  workflow_dispatch:
+name: Use secret as environment variable
+on: push
+
 jobs:
-  check-bats-version:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Run a command with a secret
         env:
-          AQI_API_KEY: ${{secrets.AQI_API_KEY}}
-      - run: |
-          home_dir=$(pwd)
-          echo $home_dir
-          echo -----------------------------------------------------------------------
-          echo $AQI_API_KEY
-          echo $secrets.AQI_API_KEY
-          pip install --upgrade pip    
-          echo -----------------------------------------------------------------------
-          pip install "snowflake-snowpark-python[pandas]"
-          echo -----------------------------------------------------------------------
-          ls -la
-          pwd
-          echo ----------------------------------------------------------------------- 
-          python $home_dir/testing_github_variables.py
+          AQI_API_KEY: ${{ secrets.AQI_API_KEY }} # Use your secret here
+        run: echo "Using secret in a command ${AQI_API_KEY}"
