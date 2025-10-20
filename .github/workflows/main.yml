@@ -7,11 +7,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         env:
-          aqi_api_key: ${{ secrets.aqi_api_key }}
+          aqi_api_key: ${{ secrets.AQI_API_KEY }}
       - run: |
           home_dir=$(pwd)
           echo $home_dir
           echo -----------------------------------------------------------------------
+          echo $AQI_API_KEY
+          echo $secrets.AQI_API_KEY
           pip install --upgrade pip    
           echo -----------------------------------------------------------------------
           pip install "snowflake-snowpark-python[pandas]"
