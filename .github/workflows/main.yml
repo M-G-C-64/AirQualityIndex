@@ -6,8 +6,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: python_testing
         env:
-          AQI_API_KEY: ${{ secrets.AQI_API_KEY }}
+          AQI_API_KEY: ${{secrets.AQI_API_KEY}}
       - run: |
           home_dir=$(pwd)
           echo $home_dir
